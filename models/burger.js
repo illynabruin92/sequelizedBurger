@@ -1,18 +1,30 @@
 var orm = require('../config/orm.js');
 
 var burger = {
-	all: function(cb) {
-		orm.all('burgers', function(res){
-			cb(res)
-		});
-	},
-	create: function(name,cb) {
-		orm.create('burgers', ['burger_name', 'devoured'], [name, false], cb);
-	},
-	update: function(id, cb) {
-		var condition = 'id=' + id;
-		orm.update('burgers', {devoured : true}, condition, cb);
-	}
-};
 
-module.exports = burger;
+	//createTable (tableName, attributes, options)
+	queryInterface.createTable('burgers', {
+	id: {
+		type: Sequelize.INTEGER,
+		primaryKey: true,
+		autoIncrement: true
+	},
+	})
+
+
+	//addColumn (tableName, attrName, dataType, options)
+	queryInterface.addColumn('burgers', 'burger_name'{
+	type: Sequelize.STRING,
+	allowNull: false
+	})
+
+	//addColumn (tableName, attrName, dataType, options)
+	queryInterface.addColumn('burgers', 'devoured'{
+	type: Sequelize.STRING,
+	allowNull: false
+	})
+
+
+	db.syn({force: true})
+	};
+
